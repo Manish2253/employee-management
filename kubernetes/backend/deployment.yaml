@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  namespace: employee-management
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: backend
+          image: employeeacrmanish001.azurecr.io/employee-backend:v1
+          imagePullPolicy: Always
+
+          ports:
+            - containerPort: 3010
+
+          env:
+            - name: DB_HOST
+              value: mysql-service
+
+            - name: DB_PORT
+              value: "3306"
+
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: employee-db-secret
+                  key: DB-NAME
+
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: employee-db-secret
+                  key: DB-USER
+
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: employee-db-secret
+                  key: DB-PASSWORD
+
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
