@@ -1,47 +1,126 @@
-# Dependencies
+# =========================================================
+# Employee Management Project - .gitignore
+# =========================================================
+
+
+# ---------------------------------------------------------
+# Node.js Dependencies
+# ---------------------------------------------------------
+
 node_modules/
 backend/node_modules/
 frontend/node_modules/
 
-# Environment files
+
+# ---------------------------------------------------------
+# Environment Files / Secrets
+# ---------------------------------------------------------
+
 .env
 .env.*
 backend/.env
+backend/.env.*
 frontend/.env
+frontend/.env.*
 
-# Build outputs
+
+# ---------------------------------------------------------
+# Build Outputs
+# ---------------------------------------------------------
+
 dist/
 build/
 frontend/dist/
 
+
+# ---------------------------------------------------------
 # Logs
+# ---------------------------------------------------------
+
 *.log
 npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-# IDE
+
+# ---------------------------------------------------------
+# IDE / Editor Files
+# ---------------------------------------------------------
+
 .vscode/
 .idea/
 *.swp
 *.swo
 
-# OS
+
+# ---------------------------------------------------------
+# Operating System Files
+# ---------------------------------------------------------
+
 .DS_Store
 Thumbs.db
 
+
+# ---------------------------------------------------------
 # Terraform
+# ---------------------------------------------------------
+
+# Terraform working directory
 .terraform/
-.terraform.lock.hcl
+**/.terraform/*
+
+# Terraform state files
 *.tfstate
 *.tfstate.*
+
+# Terraform variable files
+# May contain passwords, usernames and other secrets
+*.tfvars
+*.tfvars.json
+
+# Terraform crash logs
 crash.log
 crash.*.log
+
+# Terraform override files
 override.tf
 override.tf.json
 *_override.tf
 *_override.tf.json
+
+# Terraform CLI configuration
 .terraformrc
 terraform.rc
 
-# Kubernetes secrets (never commit real secrets)
+# IMPORTANT:
+# Do NOT ignore .terraform.lock.hcl
+# We want to commit the Terraform provider lock file.
+
+
+# ---------------------------------------------------------
+# Kubernetes Secrets
+# ---------------------------------------------------------
+
+# Never commit Kubernetes manifests containing real secrets
 **/secrets.yaml
 **/secret.yaml
+
+# Optional local secret files
+**/*-secret-local.yaml
+
+
+# ---------------------------------------------------------
+# Temporary Azure / OIDC Files
+# ---------------------------------------------------------
+
+github-oidc.json
+
+
+# ---------------------------------------------------------
+# Temporary Files
+# ---------------------------------------------------------
+
+*.tmp
+*.temp
+*.bak
+*~
