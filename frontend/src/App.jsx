@@ -11,7 +11,7 @@ function App() {
 
   const loadEmployees = () => {
 
-  fetch("http://localhost:3010/employees")
+  fetch("/api/employees")
     .then(response => response.json())
     .then(data => {
       setEmployees(data);
@@ -37,7 +37,7 @@ if (!name || !department || !location) {
     location
   };
 
-  fetch("http://localhost:3010/employees", {
+  fetch("/api/employees", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -68,7 +68,7 @@ const deleteEmployee = async (id) => {
 
   try {
 
-    await fetch(`http://localhost:3010/employees/${id}`, {
+    await fetch(`/api/employees/${id}`, {
       method: "DELETE"
     });
 
@@ -97,7 +97,7 @@ const updateEmployee = async () => {
 
   try {
 
-    await fetch(`http://localhost:3010/employees/${editingId}`, {
+    await fetch(`/api/employees/${editingId}`, {
 
       method: "PUT",
 
